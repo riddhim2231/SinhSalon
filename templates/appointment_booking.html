@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block meta_title %}Appointment Booking{% endblock %}
+{% block content %}
+    <div class="m-5" >
+        <div style="text-align:center">
+            <h2> Book an appointment</h2>
+        </div>
+        <div class="row align-self-center">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row mt-5 offset-3">
+                    <div class="col-4">
+                        <label for="gender" class="form-label" style="float: left;">Choose Gender</label>
+                        <select class="form-control" id="gender" name="gender" required>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <label for="appointment_date" class="form-label" style="float: left;">Choose Date</label>
+                        <input type="datetime-local" class="form-control" name="appointment_date" id="appointmentDate" required>
+                    </div>
+                </div>
+                <div class="row offset-3 mt-2">
+                    <div class="col-4">
+                        <label for="stylist" class="form-label" style="float: left;">Choose Stylist</label>
+                        <select class="form-control" id="stylist" name="stylist" required>
+                            {% for stylist in stylists %}
+                                <option value="{{stylist.id}}">{{stylist.user.first_name}} {{ stylist.user.last_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <label for="service" class="form-label" style="float: left;">Choose Service</label>
+                        <select class="form-control" id="service" name="service" required>
+                            {% for service in services %}
+                                <option value="{{service.id}}">{{service.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="row offset-3 mt-2">
+                    <div class="col-6">
+                        <a class="btn btn-light p-2 border" href="{% url 'dashboard' %}">Previous</a>
+                    </div>
+                    <div class="col-6" style="padding-left:70px">
+                        <button type="submit" class="btn btn-light p-2 border">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

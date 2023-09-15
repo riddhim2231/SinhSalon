@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block meta_title %}Sign in{% endblock %}
+{% block content %}
+
+<div class=" m-5 auth_forms">
+    <a href="/"><img src="{{ STATIC_URL}}/images/logo.png" class="logo-style" /></a>
+    <h2>Salon Registration Details</h2>
+    <div class="p-2 m-3">
+        {{ user_form.errors }}
+        {{ profile_form.errors }}
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="row">
+                <div class="col-6 p-2">
+                    <label for="firstName" class="form-label" style="float: left;">First Name</label>
+                    {% render_field user_form.first_name class='form-control' %}
+                </div>
+                <div class="col-6 p-2">
+                    <label for="lastName" class="form-label" style="float: left;">Last Name</label>
+                    {% render_field user_form.last_name class='form-control' %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 p-2">
+                    <label for="age" class="form-label" style="float: left;">Age</label>
+                    {% render_field profile_form.age class='form-control' %}
+                </div>
+                <div class="col-6 p-2">
+                    <label for="emailId" class="form-label" style="float: left;">Email</label>
+                    {% render_field user_form.email class='form-control' %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 p-2">
+                    <label for="mobileNumber" class="form-label" style="float: left;">Mobile No</label>
+                    {% render_field profile_form.phone_number class='form-control' %}
+                </div>
+                <div class="col-6 p-2">
+                    <label for="gender" class="form-label" style="float: left;">Gender</label>
+                    {% render_field profile_form.gender class='form-control' %}
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 p-2">
+                    <label for="password" class="form-label" style="float: left;">Password</label>
+                    {% render_field user_form.password class='form-control' %}
+
+                </div>
+                <div class="col-6 p-2">
+                    <label for="confirmPassword" class="form-label" style="float: left;">Confirm Password</label>
+                    {% render_field user_form.confirm_password class='form-control' %}
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="address" class="form-label" style="float: left;">Address</label>
+                {% render_field profile_form.address class='form-control' %}
+            </div>
+            
+            <div class="col-4 offset-4 p-2 d-none">
+                <label for="userType" class="form-label" style="float: left;">User Type</label>
+                {% render_field profile_form.user_type class='form-control' %}
+            </div> 
+            <button type="submit" class="btn btn-light m-3" id="submit-button">Next</button>
+        </form>
+    </div>
+    <p class="p-3">Already existing customers can <a href="{% url 'login' %}" style="text-decoration: none;color: black;font-weight: 600;">LOGIN</a></p>
+</div>
+{% endblock %}

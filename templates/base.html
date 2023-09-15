@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sinh Salon | {% block meta_title %}{% endblock %} </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-5.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css">
+
+  {% block css %}{% endblock %}
+</head>
+<body>
+
+<div id="content" class="container">
+{% block content %}
+{% endblock content %}
+</div>
+
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-5.bundle.min.js"></script>
+{% block js %}{% endblock %}
+<script>
+  $(function () {
+      var options = {year: 'numeric', month: 'long', day: 'numeric', hour: "numeric", minute: "numeric"};
+      var date = new Date();
+      var now = date.toLocaleString("en-IN", options);
+      $("#current-time").text(now.replace("at", ""));
+      setInterval(function () {
+          date = new Date();
+          now = date.toLocaleString("en-IN", options);
+          $("#current-time").text(now.replace("at", ""));
+      }, 1000);
+  })
+</script>
+</body>
+</html>

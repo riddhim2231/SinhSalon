@@ -1,0 +1,35 @@
+<div>
+    <div class="row pt-4">
+        <div class="col-8">
+            <h2>Here are your upcoming appointments</h2>
+        </div>
+        {% if appointments %}
+            <div class="col-4 px-0">
+                <a href="{% url 'appointment_booking' %}"><button class="btn btn-light p-2 border" style="float:right">Book an Appointment</button></a>
+            </div>
+        {% endif %}
+        <div class="border p-4 mt-5">
+            {% if appointments %}
+                <div class="pb-3"><Strong>Upcoming Appointment</Strong></div>
+                <div class="row">
+                    {% for appointment in appointments %}
+                            <div class="col-6 mt-3">
+                                <div class="p-2 border">
+                                    <p>{{appointment.appointment_date| date:"dS M Y"}}</p>
+                                    <div class="pt-2"><strong>Salon: </strong> {{appointment.stylist.user.first_name}} {{appointment.stylist.user.last_name}}</div>
+                                    <div class="pt-2"><strong>Stylist: </strong> {{appointment.stylist.user.first_name}} {{appointment.stylist.user.last_name}}</div>
+                                    <div class="pt-2"><strong>Service: </strong> {{appointment.service.name}}</div>
+                                    <div class="pt-2"><strong>Location: </strong> {{appointment.stylist.address}}</div>
+                                </div>
+                            </div>
+                    {% endfor %}
+                </div>
+
+            {% else %}
+                <div style="text-align:center">
+                    <a href="{% url 'appointment_booking' %}"><button class="btn btn-light p-2 border"> Book an Appointment</button></a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

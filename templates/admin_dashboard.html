@@ -1,0 +1,28 @@
+<div>
+  <div class="row pt-4">
+    <div class="col-6">
+      <h1>Dear, Sinh System</h1>
+      <h5>Please approve an Appointment</h5>
+    </div>
+    <div class="col-6">
+      <div style="float: right">
+        <div>
+          <a href="{% url 'stylists' %}"
+            ><button class="btn btn-light p-2 px-3 border">
+              Stylist List
+            </button></a
+          >
+        </div>
+        <div class="pt-2">
+          <a href="{% url 'clients' %}"
+            ><button class="btn btn-light p-2 px-3 border">
+              Client List
+            </button></a
+          >
+        </div>
+      </div>
+    </div>
+    <div id="appointment_list">{% include 'admin_pending_appointment_list.html'%}</div>
+  </div>
+</div>
+

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block meta_title %}Clients List{% endblock %}
+{% block content %}
+    <div>
+        <div class="row m-5 mb-2">
+            <div class="col-6">
+                <div id="current-time"></div>
+            </div>
+            <div class="col-6">
+                <a href="{% url 'dashboard' %}" style="float:right"><button class="btn btn-light p-2 border">Previous</button></a>
+            </div>
+        </div>
+        <div class="row m-5 mt-3">
+            <div class="col-8">
+                <h2> Clients List </h2>
+            </div>
+            <div class="col-4 px-0">
+                <div class="input-group">
+                    <span class="input-group-append">
+                        <button class="btn btn-outline-secondary border border-end-0 ms-n5 rounded-0" type="button">
+                            <img src="{{STATIC_URL}}/images/search.svg" />
+                        </button>
+                    </span>
+                    <input class="form-control border border-start-0 rounded-0" type="search" placeholder="search" id="client-search-input">
+                </div>
+            </div>
+        </div>
+        <div id="admin_appointments">
+            {% include 'admin_all_appointment_list.html' %}
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+<script>
+  $(document).ready(function () {
+    var csrf_token = "{{ csrf_token }}";
+    $(document).on("input", "#client-search-input", function (e) {
+      var name = $(this).val();
+      var url = "{% url 'appointments_list' %}"
+      if(name){
+        url = url+"?name="+name;
+      }
+      $.ajax({
+        url: url
+      })
+        .done(function (res) {
+          $("#admin_appointments").html(res);
+        })
+        .fail(function (err) {
+          console.log(err);
+        });
+    });
+
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,36 @@
+<div class="m-5">
+  {% if appointments %}
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Mail</th>
+          <th scope="col">Mobile</th>
+          <th scope="col">Service</th>
+          <th scope="col">Appointment</th>
+          <th scope="col">Stylist</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for appointment in appointments %}
+              <tr>
+                  <th>{{ appointment.client.user.first_name }} {{ appointment.client.user.last_name }}</th>
+                  <td>{{ appointment.client.user.email }}</td>
+                  <td>{{ appointment.client.phone_number }}</td>
+                  <td>{{ appointment.service.name }}</td>
+                  <td>{{ appointment.appointment_date | date:"d M y; H:i A"}}</td>
+                  <td>{{ appointment.stylist.user.first_name }} {{ appointment.stylist.user.last_name }}</td>
+                  <td>{{ appointment.get_status_display }}</td>
+
+              </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+    
+  {% else %}
+      <div class="border p-5" style="text-align:center">
+          <p>No Clients</p>
+      </div>
+  {% endif %}
+</div>

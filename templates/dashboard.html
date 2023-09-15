@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block meta_title %}Dashboard{% endblock %}
+{% block content %}
+<div>
+    <div class="row m-5">
+        <div class="col-6">
+            <div id="current-time"></div>
+        </div>
+        <div class="col-6">
+            {% if user.userprofile.user_type == 0 %}
+                <a href="{% url 'logout' %}"><img src="{{ STATIC_URL}}/images/logout.png"  class="border p-1 rounded-circle" style="float: right; height:40px"/></a>
+            {% else %}
+                <a href="{% url 'profile' %}"><img src="{{ STATIC_URL}}/images/user-circle.svg" style="float: right"/></a>
+            {% endif %}
+        </div>
+        {% if user.userprofile.user_type == 1 %}
+            {% include "client_dashboard.html" %}
+        {% elif user.userprofile.user_type == 2 %}
+            {% include "stylist_dashboard.html" %}
+        {% else %}
+            {% include "admin_dashboard.html" %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+  $(document).ready(function () {
+    var csrf_token = "{{ csrf_token }}";
+    function updateAppointmentStatus(data) {
+      $.ajax({
+        url: "{% url 'update_appointment_status' %}",
+        contentType: "application/json",
+        beforeSend: function(request) {
+            request.setRequestHeader("csrfmiddlewaretoken", "{{ csrf_token }}");
+        },
+        method: "post",
+        data: JSON.stringify(data),
+      })
+        .done(function (res) {
+          $("#appointment_list").html(res);
+        })
+        .fail(function (err) {
+          console.log(err);
+        });
+    }
+
+    $(document).on("click", "#appointment_accepted", function (e) {
+      var id = $(this).data("id");
+      var data = {
+        id: id,
+        status: "Accepted",
+        "csrfmiddlewaretoken": csrf_token,
+      };
+      updateAppointmentStatus(data);
+    });
+
+    $(document).on("click", "#appointment_decline", function (e) {
+      var id = $(this).data("id");
+      var data = {
+        id: id,
+        status: "Decline",
+        "csrfmiddlewaretoken": csrf_token,
+      };
+      updateAppointmentStatus(data);
+    });
+
+    $(document).on("input", "#stylist-search-input", function (e) {
+        var name = $(this).val();
+        var url = "{% url 'appointments_list' %}"
+        if(name){
+          url = url+"?name="+name;
+        }
+        $.ajax({
+          url: url
+        })
+          .done(function (res) {
+            $("#stylist_appointments").html(res);
+          })
+          .fail(function (err) {
+            console.log(err);
+          });
+      });
+
+  });
+</script>
+{% endblock %}

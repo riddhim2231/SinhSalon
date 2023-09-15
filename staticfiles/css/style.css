@@ -1,0 +1,30 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.logo-style { 
+    width: auto;
+    height: 200px;
+}
+
+.errorlist.nonfield{
+    color: red;
+}
+
+.errorlist{
+    color: red;
+}
+
+#id_address{
+    height: 30px;
+}
+
+.auth_forms{
+    text-align: center;
+    background-color:#f0d9ff;
+}
+
+.auth_forms input,  .auth_forms select, .auth_forms textarea, .auth_forms button{
+    background-color:#f0d9ff;
+    border: 1px solid black;
+}

@@ -1,0 +1,27 @@
+<div class="mt-5">
+    {% if appointments %}
+        <div class="row">
+            {% for appointment in appointments %}
+                <div class="col-6 mt-3">
+                    <div class="p-3 border">
+                        <div class="row">
+                            <div class="col-8 p-3" style="font-weight: 600;">{{ appointment.client.user.first_name }} {{ appointment.client.user.last_name }} ({{appointment.client.age}}) - {{ appointment.stylist.user.first_name }} {{ appointment.stylist.user.last_name }}</div>
+                            <div class="col-2"><button class="btn btn-light p-2 border" data-id="{{appointment.id}}" id="appointment_accepted">Accept</button></div>
+                            <div class="col-2"><button class="btn btn-light p-2 border" data-id="{{appointment.id}}" id="appointment_decline">Decline</button></div>
+                        </div>
+                        <div class="row p-2">
+                            <div class="col-5" style="font-weight: 600;">{{ appointment.client.user.email }}</div>
+                            <div class="col-3" style="font-weight: 600;">{{ appointment.client.phone_number }}</div>
+                            <div class="col-2" style="font-weight: 600;">{{ appointment.service.name }}</div>
+                            <div class="col-2" style="font-weight: 600;">{{ appointment.appointment_date | date:"H:iA" }}</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="border p-5" style="text-align:center">
+            <p>No Appointments</p>
+        </div>
+    {% endif %}
+</div>

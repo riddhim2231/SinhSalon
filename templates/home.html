@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block meta_title %}Home{% endblock %}
+{% block content %}
+    <div class="mt-5">
+        <div style="text-align: center;">
+            <a href="/"><img src="{{ STATIC_URL }}/images/logo.png" class="logo-style" /></a>
+        </div>
+        <div style="text-align: center;">
+            <h2>SINH & COMPANY</h2>
+            <div class="container" style="padding-top: 68px">
+                <div class="row justify-content-center">
+
+                    <div class="col-3 me-5" style="border: 1px solid black; min-height:350px;border-radius:20%">
+                        <a href="/login?user_type=client" style="text-decoration: none;color: black;">
+                            <h3 style="margin-top:60px">CLIENT</h3>
+                            <h3 style="margin-top: 100px">BOOK AN APPOINTMENT</h3>
+                        </a>
+                    </div>
+
+                    <div class="col-3 me-5" style="border: 1px solid black; min-height:350px;border-radius:20%">
+                        <a href="/login?user_type=stylist" style="text-decoration: none;color: black;">
+                            <h3 style="margin-top:60px">STYLIST</h3>
+                            <h3 style="margin-top:100px">MANAGE AN APPOINTMENT</h3>
+                        </a>
+                    </div>
+                    <div class="col-3" style="border: 1px solid black; min-height:350px;border-radius:20%">
+                        <a href="/login?user_type=admin" style="text-decoration: none;color: black;">
+                            <h3 style="margin-top:60px">SYSTEM</h3>
+                            <h3 style="margin-top:100px">APPROVE AN APPOINTMENT</h3>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

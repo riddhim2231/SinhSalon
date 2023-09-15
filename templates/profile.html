@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block meta_title %}Profile{% endblock %}
+{% block content %}
+<div class="m-5 p-5">
+    <h2>Profile</h2>
+    <div class="row pt-3">
+        <div class="col-4 row">
+            <div class="col-6">FIRST NAME</div> 
+            <div class="col-6" style="background-color: ##fdfdfd;"><strong>{{ user.first_name }}</strong></div>
+        </div>
+        <div class="col-4 row">
+            <div class="col-6">LAST NAME</div> 
+            <div class="col-6" style="background-color: ##fdfdfd;"><strong>{{ user.last_name }}</strong></div>
+        </div>
+    </div>
+    <div class="row pt-2">
+        <div class="col-4 row">
+            <div class="col-6">MOBILE NO</div> 
+            <div class="col-6" style="background-color: ##fdfdfd;"><strong>{{ user.userprofile.phone_number }}</strong></div>
+        </div>
+        <div class="col-4 row">
+            <div class="col-6">EMAIL</div> 
+            <div class="col-6" style="background-color: ##fdfdfd;"><strong>{{ user.email }}</strong></div>
+        </div>
+
+    </div>
+    <div class="row pt-2">
+        <div class="col-4 row">
+            <div class="col-6">ADDRESS</div> 
+            <div class="col-6" style="background-color: ##fdfdfd;"><strong>{{ user.userprofile.address }}</strong></div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-6"><a href="{% url 'logout' %}"><button class="btn btn-light p-2" style="float:left">Logout</button></a></div>
+        <div class="col-6"><a href="{% url 'dashboard' %}"><button class="btn btn-light p-2" style="float:right">Previous</button></a></div>
+    </div>
+</div>
+{% endblock %}

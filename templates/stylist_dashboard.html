@@ -1,0 +1,22 @@
+<div>
+    <div class="row pt-4">
+        <div class="col-8">
+            <h2>Here are your clients for today</h2>
+        </div>
+        {% if appointments %}
+            <div class="col-4 px-0">
+                <div class="input-group">
+                    <span class="input-group-append">
+                        <button class="btn btn-outline-secondary border border-end-0 ms-n5 rounded-0" type="button">
+                            <img src="{{STATIC_URL}}/images/search.svg" />
+                        </button>
+                    </span>
+                    <input class="form-control border border-start-0 rounded-0" type="search" placeholder="search" id="stylist-search-input">
+                </div>
+            </div>
+        {% endif %}
+        <div id="stylist_appointments">
+            {% include 'stylist_appointments.html' %}
+        </div>
+    </div>
+</div>
