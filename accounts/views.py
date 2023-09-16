@@ -186,7 +186,7 @@ def update_appointment_status(request):
             appointment.save()
             appointments = Appointment.objects.filter(status=2)
             context = {"appointments":appointments}
-        except ObjectDoesNotExist:
+        except Appointment.DoesNotExist:
             status_code = 400
             context = {"error": "Invalid Id"}
     return render(request, template_name, context, status=status_code)
