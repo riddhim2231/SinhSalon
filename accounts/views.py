@@ -12,7 +12,7 @@ from django.contrib.auth import logout
 from django.views.decorators.csrf import csrf_exempt
 import datetime
 
-from forms import *
+from .forms import *
 
 import json
 

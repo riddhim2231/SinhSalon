@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.contrib.auth import login
-from models import *
+from .models import *
 
 import re
 
@@ -37,8 +37,8 @@ class UserForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     phone_number = forms.CharField()
     address = forms.Textarea()
-    gender = forms.ChoiceField(GENDER_CHOICES)
-    user_type = forms.ChoiceField(USERTYPE_CHOICES)
+    gender = forms.ChoiceField(choices=GENDER_CHOICES)
+    user_type = forms.ChoiceField(choices=USERTYPE_CHOICES)
     age = forms.IntegerField()
 
 

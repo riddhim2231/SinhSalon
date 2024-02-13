@@ -153,3 +153,6 @@ STATICFILES_DIRS = (
 MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles/media')
 
 MEDIA_URL = '/static/media/'
+
+if DEBUG:
+    MEDIA_URL='media/'

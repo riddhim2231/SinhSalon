@@ -37,7 +37,7 @@ USERTYPE_CHOICES = (
 
 class UserProfile(DateTimeBase):
     
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     gender = models.CharField(max_length=100,choices=GENDER_CHOICES, null=True, blank=True)
     
     phone_regex = RegexValidator(regex=r'^(\+\d{1,3})?,?\s?\d{8,13}', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
